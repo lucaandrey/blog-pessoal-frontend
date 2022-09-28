@@ -1,5 +1,5 @@
 import "./Home.css";
-const Home = () => {
+function Home() {
   return (
     <div>
       <h1>HOME</h1>
@@ -9,6 +9,6 @@ const Home = () => {
       />
     </div>
   );
-};
+}
 
 export default Home;
