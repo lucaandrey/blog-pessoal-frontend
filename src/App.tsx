@@ -1,12 +1,14 @@
 import "./App.css";
 import Home from "./components/home/Home";
-import Login from "./components/login/Login";
+import Navbar from "./components/estaticos/navbar/Navbar";
+import Footer from "./components/estaticos/footer/Footer";
 function App() {
   return (
-    <div className="App">
+    <>
+      <Navbar />
       <Home />
-      <Login />
-    </div>
+      <Footer />
+    </>
   );
 }
 
