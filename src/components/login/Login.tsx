@@ -13,7 +13,6 @@ import "./Login.css";
 function Login() {
   const [token, setToken] = useLocalStorage("token");
   let navigate = useNavigate();
-  
 
   const [userLogin, setUserLogin] = useState<UsuarioLogin>({
     id: 0,
@@ -102,7 +101,7 @@ function Login() {
                 Não tem uma conta?
               </Typography>
             </Box>
-            <Link to="cadastrar">
+            <Link to="/cadastrar">
               <Typography
                 variant="subtitle1"
                 gutterBottom

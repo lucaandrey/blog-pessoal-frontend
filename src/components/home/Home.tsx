@@ -5,6 +5,7 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import "./Home.css";
 import { useState } from "react";
+import TabPostagem from "../postagens/tabpostagem/TabPostagem";
 
 function Home() {
   return (
@@ -54,7 +55,9 @@ function Home() {
             height="500px"
           />
         </Grid>
-        <Grid xs={12} className="postagens"></Grid>
+        <Grid xs={12} className="postagens">
+          <TabPostagem></TabPostagem>
+        </Grid>
       </Grid>
     </>
   );

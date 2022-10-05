@@ -42,13 +42,17 @@ function CadastroUsuario() {
   }
   async function onSubmit(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (confirmarSenha == user.senha) {
-      cadastroUsuario(`/usuarios/cadastrar`, user, setUserResult);
-      alert("Usuario cadastrado com sucesso");
+    if (confirmarSenha === user.senha && user.senha.length >= 8) {
+      try {
+        cadastroUsuario(`/usuarios/cadastrar`, user, setUserResult);
+        alert("Usuario cadastrado com sucesso");
+      } catch (error) {
+        alert(
+          "Dados inconsistentes, por favor verifique os dados inseridos e tente novamente!"
+        );
+      }
     } else {
-      alert(
-        "Dados inconsistentes. Favor verificar as informações de cadastro."
-      );
+      alert("A senha devem ser iguais e conter mais de 8 caracteres!");
     }
   }
 
@@ -69,6 +73,7 @@ function CadastroUsuario() {
               Cadastrar
             </Typography>
             <TextField
+              required
               value={user.nome}
               onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)}
               id="nome"
@@ -79,6 +84,7 @@ function CadastroUsuario() {
               fullWidth
             />
             <TextField
+              required
               value={user.usuario}
               onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)}
               id="usuario"
@@ -89,6 +95,7 @@ function CadastroUsuario() {
               fullWidth
             />
             <TextField
+              required
               value={user.senha}
               onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)}
               id="senha"
@@ -100,6 +107,7 @@ function CadastroUsuario() {
               fullWidth
             />
             <TextField
+              required
               value={confirmarSenha}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 confirmarSenhaHandle(e)
