@@ -11,8 +11,9 @@ import useLocalStorage from "react-use-localstorage";
 import "./Login.css";
 
 function Login() {
-  let navigate = useNavigate();
   const [token, setToken] = useLocalStorage("token");
+  let navigate = useNavigate();
+  
 
   const [userLogin, setUserLogin] = useState<UsuarioLogin>({
     id: 0,
