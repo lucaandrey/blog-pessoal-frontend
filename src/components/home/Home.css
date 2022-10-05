@@ -1,8 +1,18 @@
-.titulo {
-  color: aliceblue;
-  background-color: aqua;
+.caixa {
+  background-color: #3f51b5;
 }
-.img1 {
-  width: 250px;
-  height: 250px;
+
+.titulo {
+  color: white !important;
+  font-weight: bold !important;
+}
+
+.botao {
+  border-color: white !important;
+  background-color: #3f51b5 !important;
+  color: white !important;
+}
+
+.postagens {
+  background-color: white !important;
 }

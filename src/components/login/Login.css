@@ -1,7 +1,7 @@
-.cursor {
-  cursor: pointer;
-  color: white;
+.texto1 {
+  font-weight: bold;
 }
+
 .text-decorator-none {
   text-decoration: none;
 }
