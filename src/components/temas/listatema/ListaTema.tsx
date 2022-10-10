@@ -30,7 +30,7 @@ function ListaTema() {
   //funcao que vai ate o backend para buscar os temas
   async function getTemas() {
     await busca("/temas", setTemas, {
-      headers: { Authorization: token },
+      headers: { 'Authorization': token },
     });
   }
 
@@ -56,7 +56,10 @@ function ListaTema() {
             </CardContent>
             <CardActions>
               <Box display="flex" justifyContent="center" mb={1.5}>
-                <Link to="" className="text-decorator-none">
+                <Link
+                  to={`/formularioTema/${tema.id}`}
+                  className="text-decorator-none"
+                >
                   <Box mx={1}>
                     <Button
                       variant="contained"
@@ -68,7 +71,9 @@ function ListaTema() {
                     </Button>
                   </Box>
                 </Link>
-                <Link to="" className="text-decorator-none">
+                <Link
+                   to={`/deletarTema/${tema.id}`} className="text-decorator-none"
+                >
                   <Box mx={1}>
                     <Button variant="contained" size="small" color="secondary">
                       deletar
