@@ -16,6 +16,14 @@ function CadastroUsuario() {
     senha: "",
   });
 
+  const [cadastro, setCadastro] = useState(false);
+
+  useEffect(() => {
+    if (user.nome.length > 3 && user.usuario !== "" && user.senha.length >= 8) {
+      setCadastro(true);
+    }
+  }, [user]);
+
   const [userResult, setUserResult] = useState<User>({
     id: 0,
     nome: "",
@@ -130,7 +138,12 @@ function CadastroUsuario() {
                   Cancelar
                 </Button>
               </Link>
-              <Button type="submit" variant="contained" color="primary">
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                disabled={!cadastro}
+              >
                 Cadastrar
               </Button>
             </Box>

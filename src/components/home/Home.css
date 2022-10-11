@@ -1,18 +1,64 @@
 .caixa {
-  background-color: #3f51b5;
+  font-weight: 400;
+  overflow-x: hidden;
+  position: relative;
+  background-color: #121212 !important;
+  color: #fff !important;
+  font-family: "Centra", sans-serif !important;
 }
 
 .titulo {
+  color: rgb(207, 93, 217) !important;
+  font-weight: bold !important;
+}
+.titulo1 {
   color: white !important;
   font-weight: bold !important;
 }
 
 .botao {
-  border-color: white !important;
-  background-color: #3f51b5 !important;
-  color: white !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+  border: 1px solid #fff !important;
+  padding: 18px 34px !important;
+  font-size: 18px !important;
+  margin-left: 18px !important;
+  position: relative !important;
+  background-color: transparent !important;
+  transition: 0.3s ease-in-out !important;
+}
+
+.botao::before {
+  content: "" !important;
+  width: 0% !important;
+  height: 100% !important;
+  position: absolute !important;
+  background-color: #fff !important;
+  left: 0 !important;
+  top: 0 !important;
+  z-index: -1 !important;
+  transition: 0.3s ease-in-out !important;
+}
+.botao:hover {
+  color: rgb(207, 93, 217) !important;
+}
+
+.botao:hover::before {
+  content: "" !important;
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute !important;
 }
 
 .postagens {
   background-color: white !important;
+}
+
+.imagem {
+  background-image: url(../../assets/img/header-img.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100vh;
+  min-height: 100vh;
 }

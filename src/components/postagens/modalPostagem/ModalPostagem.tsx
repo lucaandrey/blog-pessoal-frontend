@@ -1,15 +1,14 @@
-import React from 'react'
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import Modal from '@mui/material/Modal';
-import { Button } from "@material-ui/core"
-import CloseIcon from '@material-ui/icons/Close';
+import React from "react";
+import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import Modal from "@mui/material/Modal";
+import { Button } from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
 import Box from "@mui/material/Box";
-import './ModalPostagem.css';
-import CadastroPost from '../cadastroPost/CadastroPost';
-
+import "./ModalPostagem.css";
+import CadastroPost from "../cadastroPost/CadastroPost";
 
 function getModalStyle() {
-  const top = 50 ;
+  const top = 50;
   const left = 50;
 
   return {
@@ -22,17 +21,17 @@ function getModalStyle() {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {
-      position: 'absolute',
+      position: "absolute",
       width: 400,
       backgroundColor: theme.palette.background.paper,
-      border: '2px solid #000',
+      border: "2px solid #000",
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
     },
-  }),
+  })
 );
 
-function ModalPostagem () {
+function ModalPostagem() {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
@@ -48,21 +47,18 @@ function ModalPostagem () {
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <Box display="flex" justifyContent="flex-end" className="cursor">
-        <CloseIcon onClick={handleClose}/>
-      
+        <CloseIcon onClick={handleClose} />
       </Box>
-      
-      <CadastroPost/>
-      
+
+      <CadastroPost />
     </div>
   );
 
   return (
     <div>
-      <Button
-        variant="outlined"
-        className="btnModal"
-        onClick={handleOpen}>Nova Postagem</Button>
+      <Button className="botao" onClick={handleOpen}>
+        Nova Postagem
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -74,4 +70,4 @@ function ModalPostagem () {
     </div>
   );
 }
-export default ModalPostagem
+export default ModalPostagem;

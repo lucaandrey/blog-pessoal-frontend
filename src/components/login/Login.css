@@ -5,3 +5,16 @@
 .text-decorator-none {
   text-decoration: none;
 }
+
+.margin-top {
+  margin-top: 50px;
+}
+
+.imagem1 {
+  background-image: url(../../assets/img/banner-bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100vh;
+  min-height: 100vh;
+}

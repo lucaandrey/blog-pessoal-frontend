@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
-import ModalPostagem from '../../components/postagens/modalPostagem/ModalPostagem';
+import ModalPostagem from "../../components/postagens/modalPostagem/ModalPostagem";
 import "./Home.css";
 import { useEffect, useState } from "react";
 import TabPostagem from "../postagens/tabpostagem/TabPostagem";
@@ -12,15 +12,14 @@ import useLocalStorage from "react-use-localstorage";
 
 function Home() {
   let navigate = useNavigate();
-  const [token, setToken] = useLocalStorage('token');
-  
+  const [token, setToken] = useLocalStorage("token");
+
   useEffect(() => {
     if (token == "") {
-        alert("Você precisa estar logado")
-        navigate("/login")
-
+      alert("Você precisa estar logado");
+      navigate("/login");
     }
-}, [token])
+  }, [token]);
   return (
     <>
       <Grid
@@ -38,7 +37,7 @@ function Home() {
               color="textPrimary"
               component="h3"
               align="center"
-              className="titulo"
+              className="titulo1"
             >
               Seja bem vindo(a)!
             </Typography>
@@ -48,28 +47,19 @@ function Home() {
               color="textPrimary"
               component="h5"
               align="center"
-              className="titulo"
+              className="titulo1"
             >
               expresse aqui os seus pensamentos e opiniões!
             </Typography>
           </Box>
           <Box display="flex" justifyContent="center">
             <Box marginRight={1}>
-              <ModalPostagem/>
+              <ModalPostagem />
             </Box>
-            <Button variant="outlined" className="botao">
-              Ver Postagens
-            </Button>
+            <Button className="botao">Ver Postagens</Button>
           </Box>
         </Grid>
-        <Grid item xs={6}>
-          <img
-            src="https://i.imgur.com/H88yIo2.png"
-            alt=""
-            width="500px"
-            height="500px"
-          />
-        </Grid>
+        <Grid item xs={6} className="imagem"></Grid>
         <Grid xs={12} className="postagens">
           <TabPostagem></TabPostagem>
         </Grid>

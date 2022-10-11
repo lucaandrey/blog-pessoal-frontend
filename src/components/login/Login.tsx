@@ -23,6 +23,18 @@ function Login() {
     token: "",
   });
 
+  const [form, setForm] = useState(false);
+
+  useEffect(() => {
+    if (
+      userLogin.usuario !== "" &&
+      userLogin.senha !== "" &&
+      userLogin.senha.length >= 8
+    ) {
+      setForm(true);
+    }
+  }, [userLogin]);
+
   function updateModel(event: ChangeEvent<HTMLInputElement>) {
     setUserLogin({
       ...userLogin,
@@ -51,14 +63,14 @@ function Login() {
     <Grid container direction="row" justifyContent="center" alignItems="center">
       <Grid alignItems="center" xs={6}>
         <Box paddingX={20}>
-          <form onSubmit={conectar}>
+          <form onSubmit={conectar} className="margin-top">
             <Typography
               variant="h3"
               gutterBottom
               color="textPrimary"
               component="h3"
               align="center"
-              className="texto1"
+              className="titulo1"
             >
               Entrar
             </Typography>
@@ -89,7 +101,12 @@ function Login() {
             />
 
             <Box marginTop={2} textAlign="center">
-              <Button type="submit" variant="contained" color="primary">
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                disabled={!form}
+              >
                 Logar
               </Button>
             </Box>
@@ -115,9 +132,8 @@ function Login() {
         </Box>
       </Grid>
 
-      <Grid xs={6} className="imagem"></Grid>
+      <Grid xs={6} className="imagem1"></Grid>
     </Grid>
   );
 }
-
 export default Login;
