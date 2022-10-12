@@ -15,6 +15,19 @@ import { useSelector } from "react-redux";
 
 function Navbar() {
   const [activeLink, setActiveLink] = useState("home");
+  const token = useSelector<TokenState, TokenState["tokens"]>(
+    (state) => state.tokens
+  );
+  let navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  function goLogout() {
+    dispatch(addToken(""));
+    alert("Usuário deslogado");
+    navigate("/login");
+  }
+
+  let navbarComponent;
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -31,19 +44,7 @@ function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const token = useSelector<TokenState, TokenState["tokens"]>(
-    (state) => state.tokens
-  );
-  let navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  function goLogout() {
-    dispatch(addToken(""));
-    alert("Usuário deslogado");
-    navigate("/login");
-  }
-
-  let navbarComponent;
+  
 
   if (token !== "") {
     navbarComponent = (
