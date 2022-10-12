@@ -7,11 +7,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { ChangeEvent, useEffect, useState } from "react";
 import UsuarioLogin from "../../model/UsuarioLogin";
 import { login } from "../../services/Service";
-import useLocalStorage from "react-use-localstorage";
 import "./Login.css";
+import { useDispatch } from "react-redux";
+import { addToken } from "../../store/tokens/actions";
 
 function Login() {
-  const [token, setToken] = useLocalStorage("token");
+  const [token, setToken] = useState("");
+  const dispatch = useDispatch();
   let navigate = useNavigate();
 
   const [userLogin, setUserLogin] = useState<UsuarioLogin>({
@@ -55,6 +57,7 @@ function Login() {
 
   useEffect(() => {
     if (token !== "") {
+      dispatch(addToken(token));
       navigate("/home");
     }
   }, [token]);

@@ -4,16 +4,21 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { useSelector } from "react-redux";
+import { TokenState } from "../../../store/tokens/tokensReducer";
 import Grid from "@mui/material/Grid";
-import purple from "@material-ui/core/colors/purple";
 
 import "./Footer.css";
 
-const roxin = purple[300];
-
 function Footer() {
-  return (
-    <>
+  const token = useSelector<TokenState, TokenState["tokens"]>(
+    (state) => state.tokens
+  );
+
+  let footerComponent;
+
+  if (token !== "") {
+    footerComponent = (
       <Grid
         container
         direction="row"
@@ -79,8 +84,9 @@ function Footer() {
           </Box>
         </Grid>
       </Grid>
-    </>
-  );
+    );
+  }
+  return <>{footerComponent}</>;
 }
 
 export default Footer;

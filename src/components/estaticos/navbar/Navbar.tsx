@@ -8,6 +8,10 @@ import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import useLocalStorage from "react-use-localstorage";
 import { useNavigate } from "react-router-dom";
+import { TokenState } from "../../../store/tokens/tokensReducer";
+import { useDispatch } from "react-redux";
+import { addToken } from "../../../store/tokens/actions";
+import { useSelector } from "react-redux";
 
 function Navbar() {
   const [activeLink, setActiveLink] = useState("home");
@@ -27,16 +31,22 @@ function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const [token, setToken] = useLocalStorage("token");
+  const token = useSelector<TokenState, TokenState["tokens"]>(
+    (state) => state.tokens
+  );
   let navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function goLogout() {
-    setToken("");
-    alert("Usuario deslogado!");
+    dispatch(addToken(""));
+    alert("Usuário deslogado");
     navigate("/login");
   }
-  return (
-    <>
+
+  let navbarComponent;
+
+  if (token !== "") {
+    navbarComponent = (
       <AppBar position="static" className={scrolled ? "scrolled" : ""}>
         <Toolbar variant="dense" className="NavBar">
           <Box className="cursor">
@@ -84,8 +94,10 @@ function Navbar() {
           </Grid>
         </Toolbar>
       </AppBar>
-    </>
-  );
+    );
+  }
+
+  return <>{navbarComponent}</>;
 }
 
 export default Navbar;
