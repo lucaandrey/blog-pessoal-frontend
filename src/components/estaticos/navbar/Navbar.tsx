@@ -12,6 +12,7 @@ import { TokenState } from "../../../store/tokens/tokensReducer";
 import { useDispatch } from "react-redux";
 import { addToken } from "../../../store/tokens/actions";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 function Navbar() {
   const [activeLink, setActiveLink] = useState("home");
@@ -23,7 +24,15 @@ function Navbar() {
 
   function goLogout() {
     dispatch(addToken(""));
-    alert("Usuário deslogado");
+    toast.info("usuario deslogado", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      theme: "dark",
+      progress: undefined,
+    });
     navigate("/login");
   }
 
@@ -43,8 +52,6 @@ function Navbar() {
 
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  
 
   if (token !== "") {
     navbarComponent = (

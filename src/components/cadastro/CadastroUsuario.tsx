@@ -1,6 +1,7 @@
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import User from "../../model/User";
 import { cadastroUsuario } from "../../services/Service";
 import "./CadastroUsuario.css";
@@ -53,14 +54,39 @@ function CadastroUsuario() {
     if (confirmarSenha === user.senha && user.senha.length >= 8) {
       try {
         cadastroUsuario(`/usuarios/cadastrar`, user, setUserResult);
-        alert("Usuario cadastrado com sucesso");
+        toast.success("Usuario cadastrado com sucesso!!", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          theme: "dark",
+          progress: undefined,
+        });
       } catch (error) {
-        alert(
-          "Dados inconsistentes, por favor verifique os dados inseridos e tente novamente!"
-        );
+        toast.error("Dados inconsistentes, tente novamente!!", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          theme: "dark",
+          progress: undefined,
+        });
       }
     } else {
-      alert("A senha devem ser iguais e conter mais de 8 caracteres!");
+      toast.error(
+        "As senhas precisam ser iguais e conter mais de 8 caracteres!",
+        {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          theme: "dark",
+          progress: undefined,
+        }
+      );
     }
   }
 

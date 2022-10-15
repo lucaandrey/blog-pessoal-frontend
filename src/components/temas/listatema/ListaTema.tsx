@@ -12,6 +12,7 @@ import Box from "@mui/material/Box";
 import Tema from "../../../model/Tema";
 import useLocalStorage from "react-use-localstorage";
 import { busca } from "../../../services/Service";
+import { toast } from "react-toastify";
 
 function ListaTema() {
   //trazer a funcao de navigate
@@ -23,14 +24,22 @@ function ListaTema() {
   //verificar se a pessoa tem token, se nao tiver manda pro login
   useEffect(() => {
     if (token === "") {
-      alert("Voce precisa estar logado!");
+      toast.error("Voce precisa estar logado!!", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        theme: "dark",
+        progress: undefined,
+      });
       navigate("/login");
     }
   }, [token]);
   //funcao que vai ate o backend para buscar os temas
   async function getTemas() {
     await busca("/temas", setTemas, {
-      headers: { 'Authorization': token },
+      headers: { Authorization: token },
     });
   }
 
@@ -72,7 +81,8 @@ function ListaTema() {
                   </Box>
                 </Link>
                 <Link
-                   to={`/deletarTema/${tema.id}`} className="text-decorator-none"
+                  to={`/deletarTema/${tema.id}`}
+                  className="text-decorator-none"
                 >
                   <Box mx={1}>
                     <Button variant="contained" size="small" color="secondary">

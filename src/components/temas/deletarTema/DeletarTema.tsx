@@ -12,6 +12,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import useLocalStorage from "react-use-localstorage";
 import { buscaId, deleteId } from "../../../services/Service";
 import Tema from "../../../model/Tema";
+import { toast } from "react-toastify";
 
 function DeletarTema() {
   let navigate = useNavigate();
@@ -21,7 +22,15 @@ function DeletarTema() {
 
   useEffect(() => {
     if (token === "") {
-      alert("voce precisa estar logado!");
+      toast.error("Voce precisa estar logado!!", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        theme: "dark",
+        progress: undefined,
+      });
       navigate("/login");
     }
   }, [token]);
@@ -35,23 +44,31 @@ function DeletarTema() {
   async function findById(id: string) {
     buscaId(`/temas/${id}`, setTema, {
       headers: {
-        'Authorization': token,
+        Authorization: token,
       },
     });
   }
 
   function sim() {
-    navigate('/temas')
+    navigate("/temas");
     deleteId(`/temas/${id}`, {
       headers: {
-        'Authorization': token
-      }
+        Authorization: token,
+      },
     });
-    alert('Tema deletado com sucesso');
+    toast.success("Tema deletado com sucesso!!", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      theme: "dark",
+      progress: undefined,
+    });
   }
 
   function nao() {
-    navigate('/temas')
+    navigate("/temas");
   }
 
   return (
@@ -80,7 +97,12 @@ function DeletarTema() {
                 </Button>
               </Box>
               <Box mx={2}>
-                <Button onClick={nao} variant="contained" size="large" color="secondary">
+                <Button
+                  onClick={nao}
+                  variant="contained"
+                  size="large"
+                  color="secondary"
+                >
                   Não
                 </Button>
               </Box>
